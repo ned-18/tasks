@@ -1,0 +1,103 @@
+:root {
+	--brown: #b28451;
+	--blue: #023274;
+	--d: 3deg; /* distance between dashes */
+	--n: 40; /* number of dashes */
+	--b: 4px; /* control the thickness of border*/
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	font-family: 'Big Shoulders Stencil Display', sans-serif;
+}
+
+.container {
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 1) 0%,
+		rgba(0, 0, 0, 0.15) 100%
+	);
+}
+
+.btn-border {
+	padding: 15rem;
+	display: inline-block;
+	border-radius: 50%;
+	transition: all 0.2s;
+	position: relative;
+	border: none;
+	background: var(--c, linear-gradient(var(--brown) 50%, var(--blue) 50%));
+	-webkit-mask: radial-gradient(
+			farthest-side,
+			transparent calc(100% - var(--b)),
+			#fff calc(100% - var(--b) + 1px)
+		),
+		repeating-conic-gradient(
+			#000 0 calc(360deg / var(--n) - var(--d)),
+			transparent 0 calc(360deg / var(--n))
+		);
+	-webkit-mask-composite: source-in;
+	mask: radial-gradient(
+			farthest-side,
+			transparent calc(100% - var(--b)),
+			#fff calc(100% - var(--b) + 1px)
+		),
+		repeating-conic-gradient(
+			#000 0 calc(360deg / var(--n) - var(--d)),
+			transparent 0 calc(360deg / var(--n))
+		);
+	mask-composite: intersect;
+	animation: rotateClockwise 12s infinite linear;
+}
+
+.counter-clockwise {
+	animation: rotateCounterClockwise 12s infinite linear;
+}
+
+a:link,
+a:visited {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-decoration: none;
+	color: var(--blue);
+	background-color: var(--brown);
+	border-radius: 50%;
+	width: 15rem;
+	height: 5rem;
+	padding: 10rem 5rem;
+	font-size: 3.5rem;
+	text-align: center;
+	box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+	transition: color 0.2s ease-in;
+}
+
+a:hover {
+	color: white;
+}
+
+a:active {
+	outline: none;
+	transform: translate(-50%, -49%);
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+@keyframes rotateClockwise {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rotateCounterClockwise {
+	100% {
+		transform: rotate(-360deg);
+	}
+}
