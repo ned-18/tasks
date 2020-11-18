@@ -76,12 +76,11 @@ const displayNumbers = () => {
 
 	const nums = document.querySelectorAll('.number');
 
-	nums.forEach(num =>
-		num.addEventListener(
-			'click',
-			sumOfAdjacentNumsHandler.bind(this, Number(num.innerHTML), nums)
-		)
-	);
+	numbers.addEventListener('click', function (e) {
+		if (e.target.classList.contains('number')) {
+			sumOfAdjacentNumsHandler(Number(e.target.innerHTML), nums);
+		}
+	});
 };
 
 displayNumbers();
